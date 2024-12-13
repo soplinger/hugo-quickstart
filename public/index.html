@@ -12,6 +12,7 @@
       // Detect invite token and redirect to /admin/
       const inviteToken = params.get('invite_token');
       if (inviteToken) {
+        console.log('inviteToken', inviteToken);
         window.location.href = `/admin/#invite_token=${inviteToken}`;
         return;
       }
@@ -19,6 +20,7 @@
       // Detect confirmation token and redirect to /admin/
       const confirmationToken = params.get('confirmation_token');
       if (confirmationToken) {
+        console.log('confirmationToken', confirmationToken);
         window.location.href = `/admin/#confirmation_token=${confirmationToken}`;
         return;
       }
