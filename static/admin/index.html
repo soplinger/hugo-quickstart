@@ -11,9 +11,18 @@
   <script>
     window.addEventListener('load', () => {
       if (window.netlifyIdentity) {
-        // Extract confirmation token from hash
+        // Check for invite token
         const hash = window.location.hash.substring(1);
         const params = new URLSearchParams(hash);
+        const inviteToken = params.get('invite_token');
+        
+        if (inviteToken) {
+          console.log('Invite token detected');
+          // Redirect to admin page with invite token
+          window.location.href = `/admin/#invite_token=${inviteToken}`;
+        }
+
+        // Handle confirmation token
         const confirmationToken = params.get('confirmation_token');
         
         if (confirmationToken) {
