@@ -1,5 +1,5 @@
 backend:
-  name: github
+  name: git-gateway
   repo: soplinger/hugo-quickstart
   branch: main
   site_domain: https://hugotest12334.netlify.app
