@@ -7,14 +7,20 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
+    // Handle invite token
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
+      window.netlifyIdentity.on('init', (user) => {
         if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
+          // If no user is logged in, check for invite token
+          const urlParams = new URLSearchParams(window.location.search);
+          const inviteToken = urlParams.get('invite_token');
+          
+          if (inviteToken) {
+            window.netlifyIdentity.open('signup');
+            window.netlifyIdentity.inviteToken = inviteToken;
+          }
         }
       });
     }
