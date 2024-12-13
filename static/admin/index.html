@@ -9,20 +9,12 @@
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    // Comprehensive token handling
     window.addEventListener('load', () => {
       if (window.netlifyIdentity) {
-        window.netlifyIdentity.on('init', (user) => {
-          console.log('Netlify Identity initialized', user);
-        });
-
-        window.netlifyIdentity.on('error', (err) => {
-          console.error('Netlify Identity Error:', err);
-        });
-
-        // Handle confirmation token
-        const urlParams = new URLSearchParams(window.location.search);
-        const confirmationToken = urlParams.get('confirmation_token');
+        // Extract confirmation token from hash
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash);
+        const confirmationToken = params.get('confirmation_token');
         
         if (confirmationToken) {
           console.log('Confirmation token detected');
@@ -35,6 +27,14 @@
               console.error('Confirmation failed', error);
             });
         }
+
+        window.netlifyIdentity.on('init', (user) => {
+          console.log('Netlify Identity initialized', user);
+        });
+
+        window.netlifyIdentity.on('error', (err) => {
+          console.error('Netlify Identity Error:', err);
+        });
       }
     });
   </script>
