@@ -4,28 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="/css/demo-styling.css">
-  <script>
-    window.addEventListener('load', () => {
-      const hash = window.location.hash.substring(1);
-      const params = new URLSearchParams(hash);
-  
-      // Detect invite token and redirect to /admin/
-      const inviteToken = params.get('invite_token');
-      if (inviteToken) {
-        console.log('inviteToken', inviteToken);
-        window.location.href = `/admin/#invite_token=${inviteToken}`;
-        return;
-      }
-  
-      // Detect confirmation token and redirect to /admin/
-      const confirmationToken = params.get('confirmation_token');
-      if (confirmationToken) {
-        console.log('confirmationToken', confirmationToken);
-        window.location.href = `/admin/#confirmation_token=${confirmationToken}`;
-        return;
-      }
-    });
-  </script>  
   
   <title>Netlify &#43; Hugo Quickstart</title>
 </head><body><div id="content">
@@ -60,5 +38,27 @@
 </div>
 
         </div>
+        <script>
+          window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+        
+            // Detect invite token and redirect to /admin/
+            const inviteToken = params.get('invite_token');
+            if (inviteToken) {
+              console.log('inviteToken', inviteToken);
+              window.location.href = `/admin/#invite_token=${inviteToken}`;
+              return;
+            }
+        
+            // Detect confirmation token and redirect to /admin/
+            const confirmationToken = params.get('confirmation_token');
+            if (confirmationToken) {
+              console.log('confirmationToken', confirmationToken);
+              window.location.href = `/admin/#confirmation_token=${confirmationToken}`;
+              return;
+            }
+          });
+        </script>  
     </body>
 </html>
